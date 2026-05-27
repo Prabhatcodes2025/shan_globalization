@@ -181,12 +181,14 @@ function HomePage() {
                 </div>
 
                 <div className="media-preview media-preview-animated">
-                  <div
-                    className="media-image-surface"
-                    style={{
-                      backgroundImage: `linear-gradient(135deg, rgba(8,16,28,0.16), rgba(8,16,28,0.56)), url(${servicesFlow})`,
-                    }}
-                  />
+                  <div className="media-image-surface">
+                    <img
+                      src={servicesFlow}
+                      alt="Delivery workflow illustration"
+                      className="media-image"
+                    />
+                    <div className="media-image-overlay" />
+                  </div>
                   <div className="preview-scanline" />
                   <div className="preview-tag">
                     <span className="signal-dot" />

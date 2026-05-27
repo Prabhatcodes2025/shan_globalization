@@ -433,10 +433,27 @@
   .media-image-surface {
     position: absolute;
     inset: 0;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    background:
+      linear-gradient(135deg, rgba(8, 16, 28, 0.12), rgba(8, 16, 28, 0.46)),
+      radial-gradient(circle at top right, rgba(52, 168, 255, 0.12), transparent 34%);
+  }
+
+  .media-image {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
     transform: scale(1.02);
+  }
+
+  .media-image-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(8, 16, 28, 0.04), rgba(8, 16, 28, 0.1) 56%, rgba(8, 16, 28, 0.22)),
+      linear-gradient(135deg, rgba(8, 16, 28, 0), rgba(8, 16, 28, 0.26));
+    pointer-events: none;
   }
 
   .preview-scanline {
@@ -563,6 +580,25 @@
     box-shadow:
       0 0 0 4px rgba(123, 244, 144, 0.16),
       inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  }
+
+  select.glass-field {
+    appearance: none;
+    -webkit-appearance: none;
+    padding-right: 3rem;
+    color-scheme: dark;
+    background-image:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03)),
+      linear-gradient(145deg, rgba(123, 244, 144, 0.08), transparent 60%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 20 20' fill='none'%3E%3Cpath d='M5 7.5 10 12.5 15 7.5' stroke='%23E2E8F0' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-position: 0 0, 0 0, calc(100% - 1rem) center;
+    background-size: auto, auto, 14px 14px;
+  }
+
+  select.glass-field option {
+    background-color: #08131f;
+    color: #f8fafc;
   }
 
   .admin-page {

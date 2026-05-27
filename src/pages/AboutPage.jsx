@@ -4,6 +4,27 @@ import usePageMeta from '../hooks/usePageMeta';
 import aboutVision from '../assets/about-vision.svg';
 import { company, industries, values } from '../data/siteContent';
 
+const aboutHighlights = [
+  {
+    label: 'Delivery model',
+    value: 'Direct coordination with a smaller, faster review loop.',
+  },
+  {
+    label: 'Engagement fit',
+    value: 'Launches, recurring content, and multilingual operations support.',
+  },
+  {
+    label: 'Quality focus',
+    value: 'Clear scope, clean review, and dependable release handoff.',
+  },
+];
+
+const aboutPromises = [
+  'Clear scope before kickoff',
+  'Visible progress during production',
+  'Clean handoff at release',
+];
+
 function AboutPage() {
   usePageMeta('About Us');
 
@@ -45,14 +66,45 @@ function AboutPage() {
           </div>
         </div>
 
-        <div className="glass-panel space-y-4 p-8">
-          <p className="text-sm leading-7 text-slate-300 sm:text-base">
-            Shan Globalization supports launches, recurring content, and multilingual operations
-            with a smaller, more direct delivery model.
-          </p>
-          <p className="text-sm leading-7 text-slate-300 sm:text-base">
-            The focus stays on clarity, consistency, and dependable output.
-          </p>
+        <div className="glass-panel flex h-full flex-col justify-between p-8">
+          <div className="space-y-4">
+            <p className="text-sm leading-7 text-slate-300 sm:text-base">
+              Shan Globalization supports launches, recurring content, and multilingual operations
+              with a smaller, more direct delivery model.
+            </p>
+            <p className="text-sm leading-7 text-slate-300 sm:text-base">
+              The focus stays on clarity, consistency, and dependable output.
+            </p>
+          </div>
+
+          <div className="mt-8 space-y-4">
+            <div className="grid gap-3 sm:grid-cols-2">
+              {aboutHighlights.map((item, index) => (
+                <div
+                  key={item.label}
+                  className={`rounded-[22px] border border-white/10 bg-white/[0.04] p-5 backdrop-blur ${
+                    index === 2 ? 'sm:col-span-2' : ''
+                  }`}
+                >
+                  <p className="text-[11px] uppercase tracking-[0.24em] text-slate-400">{item.label}</p>
+                  <p className="mt-3 text-sm leading-7 text-slate-200">{item.value}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="rounded-[24px] border border-white/10 bg-white/[0.04] p-5 backdrop-blur">
+              <p className="text-[11px] uppercase tracking-[0.24em] text-slate-400">
+                What stays consistent
+              </p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {aboutPromises.map((item) => (
+                  <span key={item} className="outline-chip">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

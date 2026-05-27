@@ -3,6 +3,8 @@ import BrandMark from './BrandMark';
 import { company, navigation } from '../data/siteContent';
 
 function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className="py-10">
       <div className="container-shell">
@@ -46,9 +48,17 @@ function Footer() {
             </div>
           </div>
 
-          <div className="mt-10 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs uppercase tracking-[0.22em] text-slate-500 sm:flex-row sm:items-center sm:justify-between">
-            <p>{company.name}</p>
-            <p>{company.tagline}</p>
+          <div className="mt-10 grid gap-3 border-t border-white/10 pt-6 text-xs text-slate-500 sm:grid-cols-2 sm:items-center lg:grid-cols-[1fr,auto,1fr]">
+            <p>Copyright {currentYear} {company.name}. All rights reserved.</p>
+            <p className="uppercase tracking-[0.22em] sm:text-right lg:text-center">
+              {company.tagline}
+            </p>
+            <p className="sm:col-span-2 lg:col-span-1 lg:text-right">
+              Developed by{' '}
+              <a href="tel:+919993013936" className="transition hover:text-forest-300">
+                +91 99930 13936
+              </a>
+            </p>
           </div>
         </div>
       </div>

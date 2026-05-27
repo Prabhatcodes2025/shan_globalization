@@ -4,6 +4,13 @@ import usePageMeta from '../hooks/usePageMeta';
 import contactConnect from '../assets/contact-connect.svg';
 import { company, contactReasons } from '../data/siteContent';
 
+const mapLocation = {
+  label: 'Vijay Nagar, Indore, Madhya Pradesh',
+  note: 'Use this map view as a quick area reference for meetings and project coordination.',
+  embedSrc:
+    'https://maps.google.com/maps?q=Vijay%20Nagar%20Indore%20Madhya%20Pradesh&z=13&output=embed',
+};
+
 const contactChannels = [
   {
     label: 'Email',
@@ -154,6 +161,57 @@ function ContactPage() {
             </form>
           </div>
         </div>
+      </section>
+
+      <section className="grid gap-8 lg:grid-cols-[1.12fr,0.88fr] lg:items-stretch">
+        <article className="glass-panel overflow-hidden p-0">
+          <div className="border-b border-white/10 px-7 py-6 sm:px-8">
+            <p className="text-sm uppercase tracking-[0.28em] text-ocean-300">Map View</p>
+            <p className="mt-4 text-3xl font-semibold text-white sm:text-4xl">
+              A quick location preview.
+            </p>
+            <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-300">
+              {mapLocation.note}
+            </p>
+          </div>
+
+          <div className="p-4 sm:p-5">
+            <div className="overflow-hidden rounded-[24px] border border-white/10 bg-[#08131f]">
+              <iframe
+                title={`Map of ${mapLocation.label}`}
+                src={mapLocation.embedSrc}
+                className="h-[360px] w-full"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+          </div>
+        </article>
+
+        <article className="glass-panel flex h-full flex-col justify-between p-7 sm:p-8">
+          <div>
+            <p className="text-sm uppercase tracking-[0.28em] text-forest-300">Location</p>
+            <p className="mt-4 text-3xl font-semibold text-white sm:text-4xl">{mapLocation.label}</p>
+            <p className="mt-4 text-sm leading-7 text-slate-300 sm:text-base">
+              A visible location block makes the contact page feel more complete and easier to trust.
+            </p>
+          </div>
+
+          <div className="mt-8 grid gap-3">
+            <div className="rounded-[22px] border border-white/10 bg-white/[0.04] p-5 backdrop-blur">
+              <p className="text-[11px] uppercase tracking-[0.24em] text-slate-400">Coordination hours</p>
+              <p className="mt-3 text-sm leading-7 text-slate-200">
+                {company.contact.hours}
+              </p>
+            </div>
+            <div className="rounded-[22px] border border-white/10 bg-white/[0.04] p-5 backdrop-blur">
+              <p className="text-[11px] uppercase tracking-[0.24em] text-slate-400">Best contact</p>
+              <p className="mt-3 text-sm leading-7 text-slate-200">
+                Email for briefs and quotes, or call for quick coordination during business hours.
+              </p>
+            </div>
+          </div>
+        </article>
       </section>
 
       <section className="cta-band">
