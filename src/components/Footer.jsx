@@ -73,9 +73,14 @@ function Footer() {
             {company.tagline}
           </p>
           <p className="sm:col-span-2 lg:col-span-1 lg:text-right">
-            Developed by{' '}
-            <a href="tel:+919993013936" className="transition hover:text-forest-300">
-              +91 99930 13936
+            Designed and developed by{' '}
+            <a
+              href="https://wa.me/919993013936"
+              target="_blank"
+              rel="noreferrer"
+              className="transition hover:text-forest-300"
+            >
+              Clickmyze Technologies
             </a>
           </p>
         </div>

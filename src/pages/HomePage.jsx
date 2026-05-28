@@ -206,18 +206,26 @@ function HomePage() {
             </h2>
             <div className="mt-6 space-y-5 text-base font-medium leading-8 text-black">
               <p>
-                At <strong>Shan Globalization</strong>, we are a trusted localization and AI data
-                service provider delivering high-quality content transformation services for global
-                teams and growing enterprises.
+                At <strong>Shan Globalization</strong>, we are a trusted AI data and localization
+                service provider delivering high-quality language, data, and evaluation solutions
+                for global businesses, AI companies, and growing enterprises.
               </p>
               <p>
-                Our services include <strong>Translation, Transcription, Annotation</strong>, and{' '}
-                <strong>Data Collection</strong>, helping clients build reliable multilingual
-                communication and AI-driven workflows.
+                Founded in 2022 with a small freelance team, we successfully managed and delivered
+                large-scale projects with accuracy, reliability, and on-time execution, helping
+                clients build scalable and efficient AI-driven workflows.
               </p>
               <p>
-                We specialize in managing scalable projects with accuracy, reliability, and fast
-                coordination so every project moves from request to delivery with confidence.
+                Our core services include <strong>Translation &amp; Transcription</strong>,{' '}
+                <strong>Data Collection</strong>, <strong>Data Annotation</strong>,{' '}
+                <strong>AI Training &amp; Quality Analysis</strong>, and{' '}
+                <strong>Search Engine Evaluation &amp; Rating</strong> for search results, ads,
+                maps, apps, and online content.
+              </p>
+              <p>
+                We are committed to maintaining international quality and security standards and
+                are proudly <strong>ISO 9001</strong> and <strong>ISO/IEC 27001 Certified</strong>,
+                ensuring reliable processes, data protection, and professional project management.
               </p>
             </div>
             <Link to="/about-us" className="about-company-button">

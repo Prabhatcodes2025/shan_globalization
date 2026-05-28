@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import PageHero from '../components/PageHero';
 import usePageMeta from '../hooks/usePageMeta';
-import contactConnect from '../assets/contact-connect.svg';
+import contactHeroBg from '../assets/contact-hero-bg.jpg';
 import { company, contactReasons } from '../data/siteContent';
 
 const mapLocation = {
@@ -41,35 +40,26 @@ function ContactPage() {
   };
 
   return (
-    <div className="page-frame space-y-20">
-      <PageHero
-        eyebrow="Contact Us"
-        title="Let’s keep it simple."
-        description="Share your project, timeline, or hiring need and we’ll respond with the next step."
-        aside={
-          <div className="space-y-4">
-            <img
-              src={contactConnect}
-              alt="Communication and support illustration"
-              className="h-56 w-full rounded-[22px] border border-white/10 object-cover shadow-luxe"
-            />
-            <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
-              <div className="rounded-[20px] border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-slate-200 backdrop-blur">
-                <p className="text-[11px] uppercase tracking-[0.24em] text-slate-400">Email</p>
-                <p className="mt-2">{company.contact.email}</p>
-              </div>
-              <div className="rounded-[20px] border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-slate-200 backdrop-blur">
-                <p className="text-[11px] uppercase tracking-[0.24em] text-slate-400">Phone</p>
-                <p className="mt-2">{company.contact.phone}</p>
-              </div>
-              <div className="rounded-[20px] border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-slate-200 backdrop-blur">
-                <p className="text-[11px] uppercase tracking-[0.24em] text-slate-400">Hours</p>
-                <p className="mt-2">{company.contact.hours}</p>
-              </div>
+    <div className="page-frame contact-page-frame space-y-20">
+      <section
+        className="contact-hero"
+        style={{ backgroundImage: `url(${contactHeroBg})` }}
+      >
+        <div className="contact-hero-overlay" />
+        <div className="contact-hero-inner">
+          <div className="space-y-5">
+            <span className="eyebrow">Contact Us</span>
+            <div className="space-y-4">
+              <h1 className="max-w-none font-display text-5xl font-semibold leading-[0.95] text-white sm:text-6xl lg:whitespace-nowrap lg:text-7xl">
+                Let’s keep it simple.
+              </h1>
+              <p className="max-w-none text-sm leading-7 text-slate-200 sm:text-lg lg:whitespace-nowrap">
+                Share your project, timeline, or hiring need and we’ll respond with the next step.
+              </p>
             </div>
           </div>
-        }
-      />
+        </div>
+      </section>
 
       <section className="grid gap-8 lg:grid-cols-[0.86fr,1.14fr] lg:items-start">
         <article className="glass-panel p-7 sm:p-8">

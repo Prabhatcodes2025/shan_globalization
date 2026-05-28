@@ -298,6 +298,81 @@
       inset 0 1px 0 rgba(255, 255, 255, 0.08);
   }
 
+  .careers-page-frame {
+    @apply pt-0;
+  }
+
+  .careers-hero {
+    @apply relative flex min-h-[72vh] w-screen overflow-hidden bg-cover px-6 pb-20 pt-52 sm:px-8 lg:px-10;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    margin-top: -12rem;
+    background-position: center 44%;
+  }
+
+  .careers-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, rgba(3, 13, 34, 0.9) 0%, rgba(3, 13, 34, 0.68) 42%, rgba(3, 13, 34, 0.44) 100%),
+      linear-gradient(180deg, rgba(3, 13, 34, 0.18), rgba(3, 13, 34, 0.62));
+    pointer-events: none;
+  }
+
+  .careers-hero-inner {
+    @apply relative z-10 mx-auto flex w-full max-w-7xl self-center;
+  }
+
+  .announcement-page-frame {
+    @apply pt-0;
+  }
+
+  .announcement-hero {
+    @apply relative flex min-h-[72vh] w-screen overflow-hidden bg-cover px-6 pb-20 pt-52 sm:px-8 lg:px-10;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    margin-top: -12rem;
+    background-position: center 42%;
+  }
+
+  .announcement-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, rgba(3, 13, 34, 0.92) 0%, rgba(3, 13, 34, 0.72) 38%, rgba(3, 13, 34, 0.4) 100%),
+      linear-gradient(180deg, rgba(3, 13, 34, 0.16), rgba(3, 13, 34, 0.68));
+    pointer-events: none;
+  }
+
+  .announcement-hero-inner {
+    @apply relative z-10 mx-auto flex w-full max-w-7xl self-center;
+  }
+
+  .contact-page-frame {
+    @apply pt-0;
+  }
+
+  .contact-hero {
+    @apply relative flex min-h-[72vh] w-screen overflow-hidden bg-cover px-6 pb-20 pt-52 sm:px-8 lg:px-10;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    margin-top: -12rem;
+    background-position: center 48%;
+  }
+
+  .contact-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, rgba(3, 13, 34, 0.94) 0%, rgba(3, 13, 34, 0.76) 42%, rgba(3, 13, 34, 0.42) 100%),
+      linear-gradient(180deg, rgba(3, 13, 34, 0.14), rgba(3, 13, 34, 0.68));
+    pointer-events: none;
+  }
+
+  .contact-hero-inner {
+    @apply relative z-10 mx-auto flex w-full max-w-7xl self-center;
+  }
+
   .section-surface {
     @apply relative overflow-hidden rounded-[32px] border border-white/10 px-6 py-10 backdrop-blur-2xl sm:px-8 sm:py-12;
     background:
@@ -429,8 +504,33 @@
   }
 
   .services-feature-card {
-    @apply flex min-h-[300px] flex-col items-center justify-center rounded-lg p-8 text-center shadow-[0_28px_52px_-28px_rgba(15,23,42,0.4)];
+    @apply relative flex min-h-[300px] flex-col items-center justify-center overflow-hidden rounded-lg border border-transparent p-8 text-center shadow-[0_28px_52px_-28px_rgba(15,23,42,0.4)] transition duration-300 ease-out;
     background: #98e5ed;
+  }
+
+  .services-feature-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.58), transparent 34%),
+      linear-gradient(135deg, rgba(255, 255, 255, 0.42), transparent 42%);
+    opacity: 0;
+    transition: opacity 300ms ease;
+  }
+
+  .services-feature-card > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .services-feature-card:hover {
+    @apply -translate-y-2 border-white/70 shadow-[0_34px_70px_-28px_rgba(7,137,173,0.7)];
+    background: #a6f2f0;
+  }
+
+  .services-feature-card:hover::before {
+    opacity: 1;
   }
 
   .services-feature-card svg {
@@ -439,6 +539,14 @@
 
   .services-feature-card > svg {
     color: #172a55;
+    transition:
+      color 300ms ease,
+      transform 300ms ease;
+  }
+
+  .services-feature-card:hover > svg {
+    color: #0789ad;
+    transform: translateY(-4px) scale(1.08);
   }
 
   .services-feature-card > svg path,
@@ -456,12 +564,20 @@
   }
 
   .services-feature-card h2 {
-    @apply mt-8 text-3xl font-bold leading-tight;
+    @apply mt-8 text-3xl font-bold leading-tight transition duration-300;
     color: #0789ad;
   }
 
+  .services-feature-card:hover h2 {
+    color: #172a55;
+  }
+
   .services-feature-card p {
-    @apply mt-5 max-w-[28ch] text-base font-medium leading-7 text-black;
+    @apply mt-5 max-w-[28ch] text-base font-medium leading-7 text-black transition duration-300;
+  }
+
+  .services-feature-card:hover p {
+    color: #10213d;
   }
 
   .services-detail-section {

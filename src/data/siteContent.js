@@ -15,8 +15,8 @@ export const company = {
     'Shan Globalization supports translation, localization, AI data workflows, and multilingual operations.',
   heroStatement: 'Clear language support for growing teams.',
   contact: {
-    email: 'contact@shanglobalization.com',
-    phone: '+91 90000 00000',
+    email: 'info@shanglobalisation.com',
+    phone: '+97299 68734',
     office: 'Client coordination available across global time zones',
     hours: 'Monday to Saturday, 9:00 AM to 6:30 PM IST',
   },

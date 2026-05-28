@@ -1,9 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
-import PageHero from '../components/PageHero';
 import SectionHeading from '../components/SectionHeading';
 import { useManagedContent } from '../context/ManagedContentContext';
 import usePageMeta from '../hooks/usePageMeta';
-import careersTeam from '../assets/careers-team.svg';
+import careersHeroBg from '../assets/careers-hero-bg.jpg';
 import { company } from '../data/siteContent';
 
 const emptyApplicationForm = {
@@ -254,23 +253,26 @@ function CareersPage() {
 
   return (
     <>
-      <div className="page-frame space-y-24">
-        <PageHero
-          eyebrow="Careers"
-          title={careersContent.heroTitle}
-          description={careersContent.heroDescription}
-          aside={
-            <div className="space-y-4">
-              <img
-                src={careersTeam}
-                alt="Team and growth illustration for careers"
-                className="h-56 w-full rounded-[22px] border border-white/10 object-cover shadow-luxe"
-              />
-              <p className="text-sm uppercase tracking-[0.24em] text-slate-400">Working style</p>
-              <p className="text-base leading-7 text-slate-200">{careersContent.workingStyle}</p>
+      <div className="page-frame careers-page-frame space-y-24">
+        <section
+          className="careers-hero"
+          style={{ backgroundImage: `url(${careersHeroBg})` }}
+        >
+          <div className="careers-hero-overlay" />
+          <div className="careers-hero-inner">
+            <div className="space-y-5">
+              <span className="eyebrow">Careers</span>
+              <div className="space-y-4">
+                <h1 className="max-w-none font-display text-5xl font-semibold leading-[0.95] text-white sm:text-6xl lg:whitespace-nowrap lg:text-7xl">
+                  {careersContent.heroTitle}
+                </h1>
+                <p className="max-w-none text-sm leading-7 text-slate-200 sm:text-lg lg:whitespace-nowrap">
+                  {careersContent.heroDescription}
+                </p>
+              </div>
             </div>
-          }
-        />
+          </div>
+        </section>
 
         <section className="space-y-10">
           <SectionHeading
