@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import usePageMeta from '../hooks/usePageMeta';
 import vrHero from '../assets/vr-hero.jpg';
-import aboutVision from '../assets/about-vision.svg';
+import aboutCompanyTech from '../assets/about-company-tech.jpeg';
 import globalizationWorkflow from '../assets/globalization-workflow.jpeg';
 import sgLogo from '../assets/sg-logo.jpeg';
 import { company } from '../data/siteContent';
@@ -235,7 +235,7 @@ function HomePage() {
 
           <div className="about-company-image-wrap">
             <img
-              src={aboutVision}
+              src={aboutCompanyTech}
               alt="Shan Globalization company overview"
               className="about-company-image"
             />
