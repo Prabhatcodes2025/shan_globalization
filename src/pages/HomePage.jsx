@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import usePageMeta from '../hooks/usePageMeta';
 import vrHero from '../assets/vr-hero.jpg';
 import aboutVision from '../assets/about-vision.svg';
-import servicesFlow from '../assets/services-flow.svg';
+import globalizationWorkflow from '../assets/globalization-workflow.jpeg';
 import sgLogo from '../assets/sg-logo.jpeg';
 import { company } from '../data/siteContent';
 
@@ -35,10 +35,10 @@ const serviceCards = [
 ];
 
 const aboutStats = [
-  { end: 100, suffix: '+', label: 'In-house team' },
-  { end: 2000, suffix: '+', label: 'Outsource team' },
-  { end: 2, suffix: 'B+', label: 'Words translated' },
-  { end: 10000, suffix: 'hr+', label: 'Transcription to date' },
+  { end: 50, suffix: '+', label: 'In-house team' },
+  { end: 1500, suffix: '+', label: 'Outsource team' },
+  { end: 1, suffix: 'B+', label: 'Words translated' },
+  { end: 5000, suffix: 'hr+', label: 'Transcription to date' },
 ];
 
 const chooseReasons = [
@@ -180,8 +180,8 @@ function HomePage() {
               <div className="media-preview media-preview-animated">
                 <div className="media-image-surface">
                   <img
-                    src={servicesFlow}
-                    alt="Delivery workflow illustration"
+                    src={globalizationWorkflow}
+                    alt="Globalization language network illustration"
                     className="media-image"
                   />
                   <div className="media-image-overlay" />
@@ -228,9 +228,9 @@ function HomePage() {
                 ensuring reliable processes, data protection, and professional project management.
               </p>
             </div>
-            <Link to="/about-us" className="about-company-button">
+            {/* <Link to="/about-us" className="about-company-button">
               Know more
-            </Link>
+            </Link> */}
           </div>
 
           <div className="about-company-image-wrap">
@@ -263,7 +263,7 @@ function HomePage() {
           {chooseReasons.map((reason) => (
             <article key={reason.title} className="choose-card">
               <div className="choose-icon-tile">
-                <ServiceIcon kind={reason.icon} />
+                <ChooseIcon kind={reason.icon} />
               </div>
               <div>
                 <h3>{reason.title}</h3>
@@ -405,6 +405,92 @@ function ServiceIcon({ kind }) {
       <rect x="4" y="5" width="16" height="4" rx="1.6" />
       <rect x="4" y="10" width="16" height="4" rx="1.6" />
       <rect x="4" y="15" width="16" height="4" rx="1.6" />
+    </svg>
+  );
+}
+
+function ChooseIcon({ kind }) {
+  if (kind === 'globe') {
+    return (
+      <svg viewBox="0 0 96 96" className="choose-premium-icon" role="img" aria-hidden="true">
+        <defs>
+          <radialGradient id="choose-globe-ocean" cx="38%" cy="26%" r="68%">
+            <stop offset="0%" stopColor="#efffff" />
+            <stop offset="38%" stopColor="#28d5d4" />
+            <stop offset="100%" stopColor="#087c91" />
+          </radialGradient>
+          <linearGradient id="choose-globe-land" x1="18%" y1="20%" x2="82%" y2="84%">
+            <stop offset="0%" stopColor="#ffffff" />
+            <stop offset="100%" stopColor="#d8f8f4" />
+          </linearGradient>
+        </defs>
+        <circle cx="48" cy="48" r="31" fill="url(#choose-globe-ocean)" />
+        <path
+          d="M29 34c7-8 18-12 28-7 6 3 4 9-1 11-4 2-8-1-11 2-2 2 0 6-4 7-5 1-9-5-14-1-4 3-7-5 2-12Zm29 18c7-1 11 5 8 12-3 6-10 10-17 10-5 0-5-6-2-9 3-4 2-12 11-13Z"
+          fill="url(#choose-globe-land)"
+          opacity="0.95"
+        />
+        <path d="M20 48h56M48 17c-9 9-13 20-13 31s4 22 13 31M48 17c9 9 13 20 13 31s-4 22-13 31" fill="none" stroke="#dffcff" strokeWidth="3" opacity="0.5" />
+        <circle cx="37" cy="27" r="8" fill="#fff" opacity="0.32" />
+      </svg>
+    );
+  }
+
+  if (kind === 'spark') {
+    return (
+      <svg viewBox="0 0 96 96" className="choose-premium-icon" role="img" aria-hidden="true">
+        <defs>
+          <linearGradient id="choose-spark-a" x1="18%" y1="16%" x2="82%" y2="84%">
+            <stop offset="0%" stopColor="#ffb000" />
+            <stop offset="48%" stopColor="#ff6b4a" />
+            <stop offset="100%" stopColor="#35d7e6" />
+          </linearGradient>
+          <linearGradient id="choose-spark-b" x1="25%" y1="18%" x2="78%" y2="82%">
+            <stop offset="0%" stopColor="#53f36d" />
+            <stop offset="100%" stopColor="#3569ff" />
+          </linearGradient>
+        </defs>
+        <circle cx="48" cy="48" r="29" fill="none" stroke="url(#choose-spark-a)" strokeWidth="14" strokeLinecap="round" strokeDasharray="92 96" />
+        <circle cx="48" cy="48" r="29" fill="none" stroke="url(#choose-spark-b)" strokeWidth="14" strokeLinecap="round" strokeDasharray="58 130" strokeDashoffset="-88" />
+        <circle cx="48" cy="48" r="14" fill="#ffffff" />
+        <path d="m70 25 3 8 8 3-8 3-3 8-3-8-8-3 8-3 3-8Z" fill="#7dfcff" />
+      </svg>
+    );
+  }
+
+  if (kind === 'shield') {
+    return (
+      <svg viewBox="0 0 96 96" className="choose-premium-icon" role="img" aria-hidden="true">
+        <defs>
+          <linearGradient id="choose-shield-a" x1="20%" y1="12%" x2="82%" y2="90%">
+            <stop offset="0%" stopColor="#34e6ff" />
+            <stop offset="52%" stopColor="#2a87ff" />
+            <stop offset="100%" stopColor="#6d5bff" />
+          </linearGradient>
+        </defs>
+        <path d="M48 15 73 24v21c0 17-10 29-25 36-15-7-25-19-25-36V24l25-9Z" fill="url(#choose-shield-a)" />
+        <path d="M48 24 64 30v15c0 11-6 19-16 25-10-6-16-14-16-25V30l16-6Z" fill="#fff" opacity="0.2" />
+        <path d="m36 48 8 8 17-19" fill="none" stroke="#ffffff" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" />
+        <circle cx="39" cy="29" r="6" fill="#fff" opacity="0.25" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg viewBox="0 0 96 96" className="choose-premium-icon" role="img" aria-hidden="true">
+      <defs>
+        <linearGradient id="choose-stack-a" x1="24%" y1="12%" x2="76%" y2="88%">
+          <stop offset="0%" stopColor="#46f06b" />
+          <stop offset="50%" stopColor="#31c6ff" />
+          <stop offset="100%" stopColor="#3067ff" />
+        </linearGradient>
+      </defs>
+      <rect x="23" y="20" width="50" height="15" rx="5" fill="url(#choose-stack-a)" />
+      <rect x="23" y="40" width="50" height="15" rx="5" fill="url(#choose-stack-a)" opacity="0.86" />
+      <rect x="23" y="60" width="50" height="15" rx="5" fill="url(#choose-stack-a)" opacity="0.72" />
+      <circle cx="34" cy="27.5" r="3" fill="#ffffff" />
+      <circle cx="34" cy="47.5" r="3" fill="#ffffff" />
+      <circle cx="34" cy="67.5" r="3" fill="#ffffff" />
     </svg>
   );
 }

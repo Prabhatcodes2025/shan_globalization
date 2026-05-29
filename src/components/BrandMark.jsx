@@ -12,8 +12,14 @@ function BrandMark({ compact = false }) {
       {!compact && (
         <div>
           <p className="font-display text-2xl font-semibold leading-none">
-            <span className="block text-[var(--sg-green)]">Shan</span>
-            <span className="block text-white">Globalization</span>
+            <span className="block">
+              <span className="text-[var(--sg-green)]">S</span>
+              <span className="text-white">han</span>
+            </span>
+            <span className="block">
+              <span className="text-white">G</span>
+              <span className="text-[var(--sg-green)]">lobalization</span>
+            </span>
           </p>
         </div>
       )}

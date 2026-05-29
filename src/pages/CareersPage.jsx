@@ -10,9 +10,74 @@ const emptyApplicationForm = {
   email: '',
   phone: '',
   currentLocation: '',
+  country: '',
+  language: '',
+  experienceLevel: '',
+  availability: '',
+  telegramWhatsapp: '',
+  resumeFileName: '',
   resumeLink: '',
   coverLetter: '',
 };
+
+const languageOptions = [
+  'English',
+  'Hindi',
+  'Tamil',
+  'Telugu',
+  'Kannada',
+  'Malayalam',
+  'Bengali',
+  'Marathi',
+  'Gujarati',
+  'Punjabi',
+  'Urdu',
+  'Arabic',
+  'French',
+  'German',
+  'Spanish',
+  'Other',
+];
+
+const countryOptions = [
+  'India',
+  'United States',
+  'United Kingdom',
+  'Canada',
+  'Australia',
+  'United Arab Emirates',
+  'Singapore',
+  'Germany',
+  'France',
+  'Spain',
+  'Other',
+];
+
+const experienceLevelOptions = [
+  'Fresher',
+  'Less than 1 year',
+  '1-2 years',
+  '3-5 years',
+  '5+ years',
+];
+
+const availabilityOptions = [
+  'Immediate',
+  'Within 1 week',
+  'Within 2 weeks',
+  'Within 1 month',
+  'Part-time only',
+  'Freelance / project based',
+];
+
+const requiredCareerBenefits = [
+  'Remote Opportunities',
+  'Flexible Work Culture',
+  'Global AI Projects',
+  'Fast-Growing Team',
+  'Multilingual Environment',
+  'Skill Development',
+];
 
 const currentLocationOptions = [
   'Andhra Pradesh',
@@ -73,6 +138,30 @@ function validateApplicationForm(applicationDetails) {
     errors.phone = 'Enter a valid phone number with 10 to 15 digits.';
   }
 
+  if (!applicationDetails.country) {
+    errors.country = 'Country is required.';
+  }
+
+  if (!applicationDetails.language) {
+    errors.language = 'Language selection is required.';
+  }
+
+  if (!applicationDetails.experienceLevel) {
+    errors.experienceLevel = 'Experience level is required.';
+  }
+
+  if (!applicationDetails.availability) {
+    errors.availability = 'Availability is required.';
+  }
+
+  if (!applicationDetails.telegramWhatsapp) {
+    errors.telegramWhatsapp = 'Telegram or WhatsApp contact is required.';
+  }
+
+  if (!applicationDetails.resumeFileName && !applicationDetails.resumeLink) {
+    errors.resumeFileName = 'Upload a resume or provide a resume link.';
+  }
+
   return errors;
 }
 
@@ -91,8 +180,16 @@ function buildApplicationEmail(role, applicationDetails) {
     `Full Name: ${applicationDetails.fullName}`,
     `Email Address: ${applicationDetails.email}`,
     `Phone Number: ${applicationDetails.phone}`,
+    `Telegram / WhatsApp: ${applicationDetails.telegramWhatsapp}`,
+    `Country: ${applicationDetails.country}`,
     `Current Location: ${applicationDetails.currentLocation || 'Not provided'}`,
+    `Language: ${applicationDetails.language}`,
+    `Experience Level: ${applicationDetails.experienceLevel}`,
+    `Availability: ${applicationDetails.availability}`,
+    `Uploaded Resume File: ${applicationDetails.resumeFileName || 'Not provided through browser form'}`,
     `Resume / Portfolio Link: ${applicationDetails.resumeLink || 'Not provided'}`,
+    '',
+    'Note: If a resume file was selected in the website form, please attach it manually before sending this email.',
     '',
     'Cover Letter',
     applicationDetails.coverLetter || 'Not provided',
@@ -107,6 +204,9 @@ function buildApplicationEmail(role, applicationDetails) {
 function CareersPage() {
   const { managedContent } = useManagedContent();
   const careersContent = managedContent.careers;
+  const displayedCareerBenefits = Array.from(
+    new Set([...careersContent.benefits, ...requiredCareerBenefits]),
+  );
   const [selectedRole, setSelectedRole] = useState(null);
   const [applicationForm, setApplicationForm] = useState(emptyApplicationForm);
   const [applicationErrors, setApplicationErrors] = useState({});
@@ -114,6 +214,7 @@ function CareersPage() {
   const [successMessage, setSuccessMessage] = useState('');
   const dialogRef = useRef(null);
   const locationMenuRef = useRef(null);
+  const resumeInputRef = useRef(null);
 
   usePageMeta('Careers');
 
@@ -222,6 +323,11 @@ function CareersPage() {
     updateApplicationField(name, value);
   };
 
+  const handleResumeFileChange = (event) => {
+    const file = event.target.files?.[0];
+    updateApplicationField('resumeFileName', file?.name || '');
+  };
+
   const handleApplicationSubmit = (event) => {
     event.preventDefault();
 
@@ -246,6 +352,9 @@ function CareersPage() {
     );
     setIsLocationMenuOpen(false);
     setApplicationForm({ ...emptyApplicationForm });
+    if (resumeInputRef.current) {
+      resumeInputRef.current.value = '';
+    }
     setApplicationErrors({});
     setSelectedRole(null);
     window.location.href = emailDraftLink;
@@ -282,8 +391,8 @@ function CareersPage() {
           />
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {careersContent.benefits.length ? (
-              careersContent.benefits.map((benefit, index) => (
+            {displayedCareerBenefits.length ? (
+              displayedCareerBenefits.map((benefit, index) => (
                 <article key={`${benefit}-${index}`} className="glass-panel p-6">
                   <p className="text-base leading-7 text-slate-200">{benefit}</p>
                 </article>
@@ -297,6 +406,16 @@ function CareersPage() {
               </article>
             )}
           </div>
+        </section>
+
+        <section className="glass-panel p-7 sm:p-8">
+          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-forest-300">
+            Who Can Apply
+          </p>
+          <p className="mt-4 max-w-4xl text-xl font-semibold leading-8 text-white sm:text-2xl sm:leading-9">
+            We welcome freelancers, language experts, AI contributors, data annotators, reviewers,
+            and remote professionals from multiple regions.
+          </p>
         </section>
 
         <section className="space-y-10">
@@ -548,6 +667,146 @@ function CareersPage() {
                       </div>
                     </div>
 
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      <label className="grid gap-1.5 text-[13px] font-medium text-slate-200">
+                        <span>
+                          Telegram / WhatsApp <span className="text-rose-300">*</span>
+                        </span>
+                        <input
+                          required
+                          type="text"
+                          name="telegramWhatsapp"
+                          value={applicationForm.telegramWhatsapp}
+                          onChange={handleApplicationChange}
+                          aria-invalid={Boolean(applicationErrors.telegramWhatsapp)}
+                          className={`glass-field py-2.5 text-sm ${applicationErrors.telegramWhatsapp ? 'border-rose-300/60 focus:border-rose-300/60' : ''}`}
+                          placeholder="+91 98765 43210 or @username"
+                        />
+                        {applicationErrors.telegramWhatsapp && (
+                          <span className="text-sm text-rose-200">{applicationErrors.telegramWhatsapp}</span>
+                        )}
+                      </label>
+
+                      <label className="grid gap-1.5 text-[13px] font-medium text-slate-200">
+                        <span>
+                          Country <span className="text-rose-300">*</span>
+                        </span>
+                        <select
+                          required
+                          name="country"
+                          value={applicationForm.country}
+                          onChange={handleApplicationChange}
+                          aria-invalid={Boolean(applicationErrors.country)}
+                          className={`glass-field py-2.5 text-sm ${applicationErrors.country ? 'border-rose-300/60 focus:border-rose-300/60' : ''}`}
+                        >
+                          <option value="">Select country</option>
+                          {countryOptions.map((country) => (
+                            <option key={country} value={country}>
+                              {country}
+                            </option>
+                          ))}
+                        </select>
+                        {applicationErrors.country && (
+                          <span className="text-sm text-rose-200">{applicationErrors.country}</span>
+                        )}
+                      </label>
+                    </div>
+
+                    <div className="grid gap-4 sm:grid-cols-3">
+                      <label className="grid gap-1.5 text-[13px] font-medium text-slate-200">
+                        <span>
+                          Language <span className="text-rose-300">*</span>
+                        </span>
+                        <select
+                          required
+                          name="language"
+                          value={applicationForm.language}
+                          onChange={handleApplicationChange}
+                          aria-invalid={Boolean(applicationErrors.language)}
+                          className={`glass-field py-2.5 text-sm ${applicationErrors.language ? 'border-rose-300/60 focus:border-rose-300/60' : ''}`}
+                        >
+                          <option value="">Select language</option>
+                          {languageOptions.map((language) => (
+                            <option key={language} value={language}>
+                              {language}
+                            </option>
+                          ))}
+                        </select>
+                        {applicationErrors.language && (
+                          <span className="text-sm text-rose-200">{applicationErrors.language}</span>
+                        )}
+                      </label>
+
+                      <label className="grid gap-1.5 text-[13px] font-medium text-slate-200">
+                        <span>
+                          Experience Level <span className="text-rose-300">*</span>
+                        </span>
+                        <select
+                          required
+                          name="experienceLevel"
+                          value={applicationForm.experienceLevel}
+                          onChange={handleApplicationChange}
+                          aria-invalid={Boolean(applicationErrors.experienceLevel)}
+                          className={`glass-field py-2.5 text-sm ${applicationErrors.experienceLevel ? 'border-rose-300/60 focus:border-rose-300/60' : ''}`}
+                        >
+                          <option value="">Select experience</option>
+                          {experienceLevelOptions.map((experienceLevel) => (
+                            <option key={experienceLevel} value={experienceLevel}>
+                              {experienceLevel}
+                            </option>
+                          ))}
+                        </select>
+                        {applicationErrors.experienceLevel && (
+                          <span className="text-sm text-rose-200">{applicationErrors.experienceLevel}</span>
+                        )}
+                      </label>
+
+                      <label className="grid gap-1.5 text-[13px] font-medium text-slate-200">
+                        <span>
+                          Availability <span className="text-rose-300">*</span>
+                        </span>
+                        <select
+                          required
+                          name="availability"
+                          value={applicationForm.availability}
+                          onChange={handleApplicationChange}
+                          aria-invalid={Boolean(applicationErrors.availability)}
+                          className={`glass-field py-2.5 text-sm ${applicationErrors.availability ? 'border-rose-300/60 focus:border-rose-300/60' : ''}`}
+                        >
+                          <option value="">Select availability</option>
+                          {availabilityOptions.map((availability) => (
+                            <option key={availability} value={availability}>
+                              {availability}
+                            </option>
+                          ))}
+                        </select>
+                        {applicationErrors.availability && (
+                          <span className="text-sm text-rose-200">{applicationErrors.availability}</span>
+                        )}
+                      </label>
+                    </div>
+
+                    <label className="grid gap-1.5 text-[13px] font-medium text-slate-200">
+                      <span>
+                        Resume Upload <span className="text-rose-300">*</span>
+                      </span>
+                      <input
+                        ref={resumeInputRef}
+                        type="file"
+                        name="resumeFile"
+                        accept=".pdf,.doc,.docx"
+                        onChange={handleResumeFileChange}
+                        aria-invalid={Boolean(applicationErrors.resumeFileName)}
+                        className={`glass-field py-2.5 text-sm file:mr-4 file:rounded-full file:border-0 file:bg-white file:px-4 file:py-2 file:text-sm file:font-semibold file:text-ink-950 ${applicationErrors.resumeFileName ? 'border-rose-300/60 focus:border-rose-300/60' : ''}`}
+                      />
+                      {applicationErrors.resumeFileName && (
+                        <span className="text-sm text-rose-200">{applicationErrors.resumeFileName}</span>
+                      )}
+                      <span className="text-xs leading-5 text-slate-400">
+                        PDF, DOC, or DOCX. Attach this file when your email draft opens.
+                      </span>
+                    </label>
+
                     <label className="grid gap-1.5 text-[13px] font-medium text-slate-200">
                       <span>Resume or Portfolio Link</span>
                       <input
@@ -556,7 +815,7 @@ function CareersPage() {
                         value={applicationForm.resumeLink}
                         onChange={handleApplicationChange}
                         className="glass-field py-2.5 text-sm"
-                        placeholder="https://drive.google.com/... or LinkedIn profile"
+                        placeholder="Optional: Google Drive resume, portfolio, or LinkedIn profile"
                       />
                     </label>
 

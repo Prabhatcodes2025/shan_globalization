@@ -142,10 +142,12 @@ export const announcements = [
 ];
 
 export const careerBenefits = [
-  'Clear ownership',
-  'Hands-on workflow learning',
-  'Fast collaboration',
-  'Client-facing experience',
+  'Remote Opportunities',
+  'Flexible Work Culture',
+  'Global AI Projects',
+  'Fast-Growing Team',
+  'Multilingual Environment',
+  'Skill Development',
 ];
 
 export const openRoles = [
