@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import usePageMeta from '../hooks/usePageMeta';
 import vrHero from '../assets/vr-hero.jpg';
 import aboutCompanyTech from '../assets/about-company-tech.jpeg';
-import globalizationWorkflow from '../assets/globalization-workflow.jpeg';
+import globalizationWorkflow from '../assets/globalization-workflow.png';
 import sgLogo from '../assets/sg-logo.jpeg';
 import { company } from '../data/siteContent';
 
