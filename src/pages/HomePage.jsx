@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import usePageMeta from '../hooks/usePageMeta';
 import vrHero from '../assets/vr-hero.jpg';
-import aboutCompanyTech from '../assets/about-company-tech.jpeg';
+import aboutCompanyTech from '../assets/about-company-tech.png';
 import globalizationWorkflow from '../assets/globalization-workflow.png';
 import sgLogo from '../assets/sg-logo.jpeg';
 import { company } from '../data/siteContent';
@@ -187,10 +187,10 @@ function HomePage() {
                   <div className="media-image-overlay" />
                 </div>
                 <div className="preview-scanline" />
-                <div className="preview-tag">
+                {/* <div className="preview-tag">
                   <span className="signal-dot" />
                   Delivery workflow
-                </div>
+                </div> */}
               </div>
             </div>
           </article>
