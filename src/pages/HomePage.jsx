@@ -4,7 +4,7 @@ import usePageMeta from '../hooks/usePageMeta';
 import vrHero from '../assets/vr-hero.jpg';
 import aboutCompanyTech from '../assets/about-company-tech.png';
 import globalizationWorkflow from '../assets/globalization-workflow.png';
-import sgLogo from '../assets/sg-logo.jpeg';
+import sgLogo from '../assets/sg-logo.png';
 import { company } from '../data/siteContent';
 
 const serviceCards = [

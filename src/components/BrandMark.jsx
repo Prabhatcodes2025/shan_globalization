@@ -1,4 +1,4 @@
-import sgLogo from '../assets/sg-logo.jpeg';
+import sgLogo from '../assets/sg-logo.png';
 
 function BrandMark({ compact = false }) {
   return (
